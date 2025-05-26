@@ -11,8 +11,8 @@
 #include <FS.h>
 #include <HTTPClient.h>
 
-const char* ssid = "Pixel_2381";
-const char* password = "maheshn5";
+const char* ssid = "your_wifi_username";
+const char* password = "your_wifi_password";
 
 AsyncWebServer server(80);
 bool takeNewPhoto = false;
@@ -66,7 +66,6 @@ const char index_html[] PROGMEM = R"rawliteral(<!DOCTYPE HTML><html>
 </script>
 </html>)rawliteral";
 
-// ================== SETUP ================== //
 void setup() {
   Serial.begin(115200);
 
@@ -140,8 +139,6 @@ void setup() {
   });
   server.begin();
 }
-
-// ================== MAIN LOOP ================== //
 void loop() {
   // Measure Distance
   float distance = measureDistance();
@@ -158,8 +155,6 @@ void loop() {
 
   delay(100);
 }
-
-// ================== HELPER FUNCTIONS ================== //
 
 float measureDistance() {
   digitalWrite(TRIG_PIN, LOW);
@@ -222,7 +217,7 @@ void sendPhotoToPC() {
   }
 
   HTTPClient http;
-  String serverUrl = "http://10.250.38.152:8080/upload"; // Update to PC's IP
+  String serverUrl = "http://Update to PC's IP:port/upload"; // 
   http.begin(serverUrl);
 
   File file = SPIFFS.open(FILE_PHOTO, FILE_READ);
